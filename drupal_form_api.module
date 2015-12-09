@@ -59,7 +59,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Plural Noun One'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_plural_noun_2_textfield'] = array(
@@ -69,7 +69,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Plural Noun Two'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_part_of_body_1_textfield'] = array(
@@ -79,7 +79,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Part of Body One'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_number_select'] = array(
@@ -99,6 +99,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     ),
     '#default_value' => variable_get('drupal_form_api_number_select', ''),
     //'#description' => t('Number'),
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_plural_noun_3_textfield'] = array(
@@ -108,7 +109,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Plural Noun Three'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_part_of_body_2_textfield'] = array(
@@ -118,7 +119,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Part of Body Two'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_type_of_liquid_textfield'] = array(
@@ -128,7 +129,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Type of Liquid'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_part_of_body_plural_textfield'] = array(
@@ -138,7 +139,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Part of Body Plural'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_part_of_body_3_select'] = array(
@@ -158,6 +159,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     ),
     '#default_value' => variable_get('drupal_form_api_part_of_body_3_select', ''),
     //'#description' => t('Part of Body Three'),
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_adjective_1_textfield'] = array(
@@ -167,7 +169,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Adjective One'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_plural_noun_4_textfield'] = array(
@@ -177,7 +179,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Plural Noun Four'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
     
   $form['drupal_form_api_adjective_2_textfield'] = array(
@@ -187,7 +189,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Adjective Two'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_verb_ing_textfield'] = array(
@@ -197,7 +199,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Verb_ing'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_noun_1_textfield'] = array(
@@ -207,7 +209,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Noun 1'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
     
   $form['drupal_form_api_plural_noun_5_textfield'] = array(
@@ -217,7 +219,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Plural Noun Five'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
   );
   
   $form['drupal_form_api_noun_2_textfield'] = array(
@@ -227,8 +229,25 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     //'#description' => t('Noun Two'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#required' => FALSE,
+    '#required' => TRUE,
+  );
+  
+  $form['drupal_form_api_submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+    '#submit' => array('drupal_form_api_madlib_form_submit'),
+  );
+  
+  $form['drupal_form_api_note'] = array(
+    '#markup' => '<p>Click it, you know you want to.</p>',
   );
   
   return $form;
+}
+
+/**
+ * Madlib form submit handler
+ */
+function drupal_form_api_madlib_form_submit($form, &$form_state) {
+  drupal_set_message(t('Answers received'));
 }
