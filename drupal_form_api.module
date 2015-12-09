@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Example useage of Drupal Form API module
+ * Example usage of Drupal Form API module.
  */
 
 /**
@@ -12,7 +12,7 @@ function drupal_form_api_menu() {
 
   $items['admin/settings/drupal_form_api'] = array(
     'title' => 'Drupal Form API Module Settings',
-    'description' => 'This page allows you to administer settings for the module',
+    'description' => 'Administer settings for Drupal Form API module',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('drupal_form_api_admin'),
     'access arguments' => array('administer drupal_form_api settings'),
@@ -22,9 +22,21 @@ function drupal_form_api_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_permission().
+ */
+function drupal_form_api_permission() {
+  return array(
+    'administer drupal_form_api settings' => array(
+      'title' => t('Administer Drupal Form API Settings'),
+      'description' => t('Perform administration tasks for Drupal Form API'),
+    ),
+  );
+}
+
 
 /**
- * System Setting Form
+ * Page callback for administration settings.
  */
 function drupal_form_api_admin() {
   $form = array();
