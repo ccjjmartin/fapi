@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * Example useage of Drupal Form API module
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function drupal_form_api_menu() {
+  $items = array();
+
+  $items['admin/settings/drupal_form_api'] = array(
+    'title' => 'Drupal Form API Module Settings',
+    'description' => 'This page allows you to administer settings for the module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('drupal_form_api_admin'),
+    'access arguments' => array('administer drupal_form_api settings'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+
+/**
+ * System Setting Form
+ */
+function drupal_form_api_admin() {
+  $form = array();
+
+  $form['drupal_form_api_checkbox'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Debug mode'),
+    '#default_value' => variable_get('drupal_form_api_checkbox', 0),
+    '#description' => t('Turn on/off debug mode'),
+  );
+
+  return system_settings_form($form);
+}
