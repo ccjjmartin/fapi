@@ -52,7 +52,15 @@ function drupal_form_api_admin() {
  * Simple madlib form skeleton
  */
 function drupal_form_api_madlib_form($form, &$form_state) {
-    $form['drupal_form_api_plural_noun_1_textfield'] = array(
+  
+  $form['drupal_form_api_section_1_fieldset'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Section 1'), 
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  
+  $form['drupal_form_api_section_1_fieldset']['drupal_form_api_plural_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun One'),
     '#default_value' => variable_get('drupal_form_api_plural_noun_1_textfield', ''),
@@ -62,7 +70,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_plural_noun_2_textfield'] = array(
+  $form['drupal_form_api_section_1_fieldset']['drupal_form_api_plural_noun_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Two'),
     '#default_value' => variable_get('drupal_form_api_plural_noun_2_textfield', ''),
@@ -72,7 +80,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_part_of_body_1_textfield'] = array(
+  $form['drupal_form_api_section_1_fieldset']['drupal_form_api_part_of_body_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of Body One'),
     '#default_value' => variable_get('drupal_form_api_part_of_body_1_textfield', ''),
@@ -82,7 +90,14 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_number_select'] = array(
+  $form['drupal_form_api_section_2_fieldset'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Section 2'), 
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  
+  $form['drupal_form_api_section_2_fieldset']['drupal_form_api_number_select'] = array(
     '#type' => 'select',
     '#title' => t('Number'),
     '#options' => array(
@@ -102,7 +117,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_plural_noun_3_textfield'] = array(
+  $form['drupal_form_api_section_2_fieldset']['drupal_form_api_plural_noun_3_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Three'),
     '#default_value' => variable_get('drupal_form_api_plural_noun_3_textfield', ''),
@@ -112,7 +127,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_part_of_body_2_textfield'] = array(
+  $form['drupal_form_api_section_2_fieldset']['drupal_form_api_part_of_body_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of Body Two'),
     '#default_value' => variable_get('drupal_form_api_part_of_body_2_textfield', ''),
@@ -122,7 +137,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_type_of_liquid_textfield'] = array(
+  $form['drupal_form_api_section_2_fieldset']['drupal_form_api_type_of_liquid_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Type of Liquid'),
     '#default_value' => variable_get('drupal_form_api_type_of_liquid_textfield', ''),
@@ -132,7 +147,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_part_of_body_plural_textfield'] = array(
+  $form['drupal_form_api_section_2_fieldset']['drupal_form_api_part_of_body_plural_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of Body Plural'),
     '#default_value' => variable_get('drupal_form_api_part_of_body_plural_textfield', ''),
@@ -142,7 +157,14 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_part_of_body_3_select'] = array(
+  $form['drupal_form_api_section_3_fieldset'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Section 3'), 
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_part_of_body_3_select'] = array(
     '#type' => 'select',
     '#title' => t('Part of Body Three'),
     '#options' => array(
@@ -162,7 +184,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_adjective_1_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_adjective_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective One'),
     '#default_value' => variable_get('drupal_form_api_adjective_1_textfield', ''),
@@ -172,7 +194,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_plural_noun_4_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_plural_noun_4_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Four'),
     '#default_value' => variable_get('drupal_form_api_plural_noun_4_textfield', ''),
@@ -182,7 +204,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
     
-  $form['drupal_form_api_adjective_2_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_adjective_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective Two'),
     '#default_value' => variable_get('drupal_form_api_adjective_2_textfield', ''),
@@ -192,7 +214,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_verb_ing_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_verb_ing_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Verb_ing'),
     '#default_value' => variable_get('drupal_form_api_verb_ing_textfield', ''),
@@ -202,7 +224,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_noun_1_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun 1'),
     '#default_value' => variable_get('drupal_form_api_noun_1_textfield', ''),
@@ -212,7 +234,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
     
-  $form['drupal_form_api_plural_noun_5_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_plural_noun_5_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Five'),
     '#default_value' => variable_get('drupal_form_api_plural_noun_5_textfield', ''),
@@ -222,7 +244,7 @@ function drupal_form_api_madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
   
-  $form['drupal_form_api_noun_2_textfield'] = array(
+  $form['drupal_form_api_section_3_fieldset']['drupal_form_api_noun_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun Two'),
     '#default_value' => variable_get('drupal_form_api_noun_2_textfield', ''),
@@ -246,8 +268,20 @@ function drupal_form_api_madlib_form($form, &$form_state) {
 }
 
 /**
+ * Madlib validate function
+ */
+function drupal_form_api_madlib_form_validate($form, &$form_state) {
+  $verb_ing = $form_state['values']['drupal_form_api_verb_ing_textfield'];
+  if (substr($verb_ing, strlen($verb_ing) - 3, 3) != 'ing') {
+    form_set_error('drupal_form_api_verb_ing_textfield',
+      'Verb_ing: Please enter a word that ends in "ing"');
+  }
+}
+
+/**
  * Madlib form submit handler
  */
 function drupal_form_api_madlib_form_submit($form, &$form_state) {
   drupal_set_message(t('Answers received'));
+  $form_state['rebuild'] = TRUE;
 }
