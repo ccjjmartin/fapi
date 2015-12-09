@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Example usage of Madlib module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function madlib_menu() {
+  $items = array();
+
+  $items['admin/madlib'] = array(
+    'title' => 'Madlib',
+    'description' => 'Madlib Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('madlib_admin'),
+    'access arguments' => array('administer settings'),
+    'type' => MENU_NORMAL_ITEM,
+    'expanded' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function madlib_permission() {
+  return array(
+    'administer madlib settings' => array(
+      'title' => t('Administer Madlib Settings'),
+      'description' => t('Perform administration tasks for Madlib'),
+    ),
+  );
+}
+
+
+/**
+ * Page callback for administration settings.
+ */
+function madlib_admin() {
+  $form = array();
+
+  $form['madlib_checkbox'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Debug mode'),
+    '#default_value' => variable_get('madlib_checkbox', 0),
+    '#description' => t('Turn on/off debug mode'),
+  );
+
+  return system_settings_form($form);
+}
