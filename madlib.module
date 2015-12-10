@@ -64,14 +64,14 @@ function madlib_admin() {
  * Simple madlib form.
  */
 function madlib_form($form, &$form_state) {
-  
+
   $form['madlib_section_1_fieldset'] = array(
-    '#type' => 'fieldset', 
-    '#title' => t('Section 1'), 
-    '#collapsible' => TRUE, 
+    '#type' => 'fieldset',
+    '#title' => t('Section 1'),
+    '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
-  
+
   $form['madlib_section_1_fieldset']['madlib_plural_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural noun'),
@@ -89,7 +89,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_1_fieldset']['madlib_part_of_body_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of the body'),
@@ -98,14 +98,14 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_2_fieldset'] = array(
-    '#type' => 'fieldset', 
-    '#title' => t('Section 2'), 
-    '#collapsible' => TRUE, 
+    '#type' => 'fieldset',
+    '#title' => t('Section 2'),
+    '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
-  
+
   $form['madlib_section_2_fieldset']['madlib_number_select'] = array(
     '#type' => 'select',
     '#title' => t('Number'),
@@ -124,7 +124,7 @@ function madlib_form($form, &$form_state) {
     '#default_value' => variable_get('madlib_number_select', ''),
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_2_fieldset']['madlib_plural_noun_3_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural noun'),
@@ -133,7 +133,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_2_fieldset']['madlib_part_of_body_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of the body'),
@@ -142,7 +142,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_2_fieldset']['madlib_type_of_liquid_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Type of liquid'),
@@ -151,7 +151,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_2_fieldset']['madlib_part_of_body_plural_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of the body (plural)'),
@@ -160,14 +160,14 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_3_fieldset'] = array(
-    '#type' => 'fieldset', 
-    '#title' => t('Section 3'), 
-    '#collapsible' => TRUE, 
+    '#type' => 'fieldset',
+    '#title' => t('Section 3'),
+    '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
-  
+
   $form['madlib_section_3_fieldset']['madlib_part_of_body_3_select'] = array(
     '#type' => 'select',
     '#title' => t('Part of the body'),
@@ -186,7 +186,7 @@ function madlib_form($form, &$form_state) {
     '#default_value' => variable_get('madlib_part_of_body_3_select', ''),
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_3_fieldset']['madlib_adjective_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective'),
@@ -195,7 +195,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_3_fieldset']['madlib_plural_noun_4_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural noun'),
@@ -204,7 +204,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-    
+
   $form['madlib_section_3_fieldset']['madlib_adjective_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective'),
@@ -213,7 +213,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_3_fieldset']['madlib_verb_ing_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective'),
@@ -222,7 +222,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_3_fieldset']['madlib_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Verb ending in "ing"'),
@@ -231,7 +231,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-    
+
   $form['madlib_section_3_fieldset']['madlib_plural_noun_5_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun'),
@@ -240,7 +240,7 @@ function madlib_form($form, &$form_state) {
     '#maxlength' => 128,
     '#required' => TRUE,
   );
-  
+
   $form['madlib_section_3_fieldset']['madlib_noun_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural noun'),
@@ -250,7 +250,7 @@ function madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
-  $form['madlib_noun_2_textfield'] = array(
+  $form['madlib_section_3_fieldset']['madlib_noun_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun'),
     '#default_value' => variable_get('madlib_noun_2_textfield', ''),
@@ -272,7 +272,7 @@ function madlib_form($form, &$form_state) {
 }
 
 /**
- * Madlib validate function
+ * Madlib validate handler.
  */
 function madlib_form_validate($form, &$form_state) {
   $verb_ing = $form_state['values']['madlib_verb_ing_textfield'];
