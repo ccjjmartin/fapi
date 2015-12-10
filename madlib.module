@@ -214,7 +214,7 @@ function madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
-  $form['madlib_section_3_fieldset']['madlib_verb_ing_textfield'] = array(
+  $form['madlib_section_3_fieldset']['madlib_adjective_3_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective'),
     '#default_value' => variable_get('madlib_adjective_3_textfield', ''),
@@ -223,7 +223,7 @@ function madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
-  $form['madlib_section_3_fieldset']['madlib_noun_1_textfield'] = array(
+  $form['madlib_section_3_fieldset']['madlib_verb_ing_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Verb ending in "ing"'),
     '#default_value' => variable_get('madlib_verb_ing_textfield', ''),
@@ -232,7 +232,7 @@ function madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
-  $form['madlib_section_3_fieldset']['madlib_plural_noun_5_textfield'] = array(
+  $form['madlib_section_3_fieldset']['madlib_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun'),
     '#default_value' => variable_get('madlib_noun_1_textfield', ''),
@@ -241,7 +241,7 @@ function madlib_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
-  $form['madlib_section_3_fieldset']['madlib_noun_2_textfield'] = array(
+  $form['madlib_section_3_fieldset']['madlib_plural_noun_5_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural noun'),
     '#default_value' => variable_get('madlib_plural_noun_5_textfield', ''),
@@ -276,7 +276,7 @@ function madlib_form($form, &$form_state) {
  */
 function madlib_form_validate($form, &$form_state) {
   $verb_ing = $form_state['values']['madlib_verb_ing_textfield'];
-  if (substr($verb_ing, strlen($verb_ing) - 3, 3) != 'ing') {
+  if (strtolower(substr($verb_ing, strlen($verb_ing) - 3, 3)) != 'ing') {
     form_set_error('madlib_verb_ing_textfield',
       'Verb_ing: Please enter a word that ends in "ing"');
   }
