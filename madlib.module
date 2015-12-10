@@ -1,0 +1,291 @@
+<?php
+/**
+ * @file
+ * Example usage of Madlib module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function madlib_menu() {
+  $items = array();
+
+  $items['admin/madlib'] = array(
+    'title' => 'Madlib',
+    'description' => 'Madlib Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('madlib_admin'),
+    'access arguments' => array('administer settings'),
+    'type' => MENU_NORMAL_ITEM,
+    'expanded' => TRUE,
+  );
+
+  $items['madlib'] = array(
+    'title' => 'Madlib',
+    'description' => 'Madlib Skeleton Form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('madlib_form'),
+    'access arguments' => array('view published content'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function madlib_permission() {
+  return array(
+    'administer madlib settings' => array(
+      'title' => t('Administer Madlib Settings'),
+      'description' => t('Perform administration tasks for Madlib'),
+    ),
+  );
+}
+
+/**
+ * Page callback for administration settings.
+ */
+function madlib_admin() {
+  $form = array();
+
+  $form['madlib_checkbox'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Debug mode'),
+    '#default_value' => variable_get('madlib_checkbox', 0),
+    '#description' => t('Turn on/off debug mode'),
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Simple madlib form.
+ */
+function madlib_form($form, &$form_state) {
+  
+  $form['madlib_section_1_fieldset'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Section 1'), 
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  
+  $form['madlib_section_1_fieldset']['madlib_plural_noun_1_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Plural noun'),
+    '#default_value' => variable_get('madlib_plural_noun_1_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+
+  $form['madlib_section_1_fieldset']['madlib_plural_noun_2_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Plural noun'),
+    '#default_value' => variable_get('madlib_plural_noun_2_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_1_fieldset']['madlib_part_of_body_1_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Part of the body'),
+    '#default_value' => variable_get('madlib_part_of_body_1_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_2_fieldset'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Section 2'), 
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  
+  $form['madlib_section_2_fieldset']['madlib_number_select'] = array(
+    '#type' => 'select',
+    '#title' => t('Number'),
+    '#options' => array(
+      0 => 1,
+      1 => 2,
+      2 => 3,
+      3 => 4,
+      4 => 5,
+      5 => 6,
+      6 => 7,
+      7 => 8,
+      8 => 9,
+      9 => 10,
+    ),
+    '#default_value' => variable_get('madlib_number_select', ''),
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_2_fieldset']['madlib_plural_noun_3_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Plural noun'),
+    '#default_value' => variable_get('madlib_plural_noun_3_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_2_fieldset']['madlib_part_of_body_2_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Part of the body'),
+    '#default_value' => variable_get('madlib_part_of_body_2_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_2_fieldset']['madlib_type_of_liquid_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Type of liquid'),
+    '#default_value' => variable_get('madlib_type_of_liquid_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_2_fieldset']['madlib_part_of_body_plural_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Part of the body (plural)'),
+    '#default_value' => variable_get('madlib_part_of_body_plural_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_3_fieldset'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Section 3'), 
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  
+  $form['madlib_section_3_fieldset']['madlib_part_of_body_3_select'] = array(
+    '#type' => 'select',
+    '#title' => t('Part of the body'),
+    '#options' => array(
+      'head' => array(
+        0 => t('eyes'),
+        1 => t('nose'),
+      ),
+      'torso' => array(
+        0 => t('stomach'),
+      ),
+      'legs' => array(
+        0 => t('feet'),
+      ),
+    ),
+    '#default_value' => variable_get('madlib_part_of_body_3_select', ''),
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_3_fieldset']['madlib_adjective_1_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Adjective'),
+    '#default_value' => variable_get('madlib_adjective_1_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_3_fieldset']['madlib_plural_noun_4_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Plural noun'),
+    '#default_value' => variable_get('madlib_plural_noun_4_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+    
+  $form['madlib_section_3_fieldset']['madlib_adjective_2_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Adjective'),
+    '#default_value' => variable_get('madlib_adjective_2_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_3_fieldset']['madlib_verb_ing_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Adjective'),
+    '#default_value' => variable_get('madlib_adjective_3_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_3_fieldset']['madlib_noun_1_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Verb ending in "ing"'),
+    '#default_value' => variable_get('madlib_verb_ing_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+    
+  $form['madlib_section_3_fieldset']['madlib_plural_noun_5_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Noun'),
+    '#default_value' => variable_get('madlib_noun_1_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_section_3_fieldset']['madlib_noun_2_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Plural noun'),
+    '#default_value' => variable_get('madlib_plural_noun_5_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+
+  $form['madlib_noun_2_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Noun'),
+    '#default_value' => variable_get('madlib_noun_2_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+
+  $form['madlib_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  $form['madlib_note'] = array(
+    '#markup' => '<p>Click it, you know you want to.</p>',
+  );
+
+  return $form;
+}
+
+/**
+ * Madlib validate function
+ */
+function madlib_form_validate($form, &$form_state) {
+  $verb_ing = $form_state['values']['madlib_verb_ing_textfield'];
+  if (substr($verb_ing, strlen($verb_ing) - 3, 3) != 'ing') {
+    form_set_error('madlib_verb_ing_textfield',
+      'Verb_ing: Please enter a word that ends in "ing"');
+  }
+}
+
+/**
+ * Madlib form submit handler.
+ */
+function madlib_form_submit($form, &$form_state) {
+  drupal_set_message(t('Answers received'));
+  $form_state['rebuild'] = TRUE;
+}
