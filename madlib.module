@@ -66,7 +66,7 @@ function madlib_admin() {
 function madlib_form($form, &$form_state) {
   $form['madlib_plural_noun_1_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Plural Noun One'),
+    '#title' => t('Plural noun'),
     '#default_value' => variable_get('madlib_plural_noun_1_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -75,7 +75,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_plural_noun_2_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Plural Noun Two'),
+    '#title' => t('Plural noun'),
     '#default_value' => variable_get('madlib_plural_noun_2_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -84,7 +84,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_part_of_body_1_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Part of Body One'),
+    '#title' => t('Part of the body'),
     '#default_value' => variable_get('madlib_part_of_body_1_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -112,7 +112,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_plural_noun_3_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Plural Noun Three'),
+    '#title' => t('Plural noun'),
     '#default_value' => variable_get('madlib_plural_noun_3_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -121,7 +121,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_part_of_body_2_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Part of Body Two'),
+    '#title' => t('Part of the body'),
     '#default_value' => variable_get('madlib_part_of_body_2_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -130,7 +130,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_type_of_liquid_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Type of Liquid'),
+    '#title' => t('Type of liquid'),
     '#default_value' => variable_get('madlib_type_of_liquid_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -139,7 +139,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_part_of_body_plural_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Part of Body Plural'),
+    '#title' => t('Part of the body (plural)'),
     '#default_value' => variable_get('madlib_part_of_body_plural_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -148,7 +148,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_part_of_body_3_select'] = array(
     '#type' => 'select',
-    '#title' => t('Part of Body Three'),
+    '#title' => t('Part of the body'),
     '#options' => array(
       'head' => array(
         0 => t('eyes'),
@@ -167,7 +167,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_adjective_1_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Adjective One'),
+    '#title' => t('Adjective'),
     '#default_value' => variable_get('madlib_adjective_1_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -176,7 +176,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_plural_noun_4_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Plural Noun Four'),
+    '#title' => t('Plural noun'),
     '#default_value' => variable_get('madlib_plural_noun_4_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -185,8 +185,17 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_adjective_2_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Adjective Two'),
+    '#title' => t('Adjective'),
     '#default_value' => variable_get('madlib_adjective_2_textfield', ''),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+  );
+  
+  $form['madlib_adjective_3_textfield'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Adjective'),
+    '#default_value' => variable_get('madlib_adjective_3_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
@@ -194,7 +203,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_verb_ing_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Verb_ing'),
+    '#title' => t('Verb ending in "ing"'),
     '#default_value' => variable_get('madlib_verb_ing_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -203,7 +212,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_noun_1_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Noun 1'),
+    '#title' => t('Noun'),
     '#default_value' => variable_get('madlib_noun_1_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -212,7 +221,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_plural_noun_5_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Plural Noun Five'),
+    '#title' => t('Plural noun'),
     '#default_value' => variable_get('madlib_plural_noun_5_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -221,7 +230,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_noun_2_textfield'] = array(
     '#type' => 'textfield',
-    '#title' => t('Noun Two'),
+    '#title' => t('Noun'),
     '#default_value' => variable_get('madlib_noun_2_textfield', ''),
     '#size' => 60,
     '#maxlength' => 128,
@@ -230,8 +239,7 @@ function madlib_form($form, &$form_state) {
 
   $form['madlib_submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Submit',
-    '#submit' => array('madlib_form_submit'),
+    '#value' => t('Submit'),
   );
 
   $form['madlib_note'] = array(
