@@ -1,47 +1,60 @@
 <?php
 /**
  * @file
- * Example useage of Drupal Form API module
+ * Example usage of Madlib module.
  */
 
 /**
  * Implements hook_menu().
  */
-function drupal_form_api_menu() {
+function madlib_menu() {
   $items = array();
 
-  $items['admin/settings/drupal_form_api'] = array(
-    'title' => 'Drupal Form API Module Settings',
-    'description' => 'This page allows you to administer settings for the module',
+  $items['admin/madlib'] = array(
+    'title' => 'Madlib',
+    'description' => 'Madlib Settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('drupal_form_api_admin'),
-    'access arguments' => array('administer drupal_form_api settings'),
+    'page arguments' => array('madlib_admin'),
+    'access arguments' => array('administer settings'),
     'type' => MENU_NORMAL_ITEM,
+    'expanded' => TRUE,
   );
   
   $items['madlib'] = array(
     'title' => 'Madlib Skeleton',
     'description' => 'Madlib Skeleton Form',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('drupal_form_api_madlib_form'),
-    'access arguments' => array('administer drupal_form_api settings'),
+    'page arguments' => array('madlib_form'),
+    'access arguments' => array('view content'),
     'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
 }
 
+/**
+ * Implements hook_permission().
+ */
+function madlib_permission() {
+  return array(
+    'administer madlib settings' => array(
+      'title' => t('Administer Madlib Settings'),
+      'description' => t('Perform administration tasks for Madlib'),
+    ),
+  );
+}
+
 
 /**
- * System Setting Form
+ * Page callback for administration settings.
  */
-function drupal_form_api_admin() {
+function madlib_admin() {
   $form = array();
 
-  $form['drupal_form_api_checkbox'] = array(
+  $form['madlib_checkbox'] = array(
     '#type' => 'checkbox',
     '#title' => t('Debug mode'),
-    '#default_value' => variable_get('drupal_form_api_checkbox', 0),
+    '#default_value' => variable_get('madlib_checkbox', 0),
     '#description' => t('Turn on/off debug mode'),
   );
 
@@ -51,38 +64,38 @@ function drupal_form_api_admin() {
 /**
  * Simple madlib form skeleton
  */
-function drupal_form_api_madlib_form($form, &$form_state) {
-    $form['drupal_form_api_plural_noun_1_textfield'] = array(
+function madlib_form($form, &$form_state) {
+    $form['madlib_plural_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun One'),
-    '#default_value' => variable_get('drupal_form_api_plural_noun_1_textfield', ''),
+    '#default_value' => variable_get('madlib_plural_noun_1_textfield', ''),
     //'#description' => t('Plural Noun One'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_plural_noun_2_textfield'] = array(
+  $form['madlib_plural_noun_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Two'),
-    '#default_value' => variable_get('drupal_form_api_plural_noun_2_textfield', ''),
+    '#default_value' => variable_get('madlib_plural_noun_2_textfield', ''),
     //'#description' => t('Plural Noun Two'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_part_of_body_1_textfield'] = array(
+  $form['madlib_part_of_body_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of Body One'),
-    '#default_value' => variable_get('drupal_form_api_part_of_body_1_textfield', ''),
+    '#default_value' => variable_get('madlib_part_of_body_1_textfield', ''),
     //'#description' => t('Part of Body One'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_number_select'] = array(
+  $form['madlib_number_select'] = array(
     '#type' => 'select',
     '#title' => t('Number'),
     '#options' => array(
@@ -97,51 +110,51 @@ function drupal_form_api_madlib_form($form, &$form_state) {
       8 => 9,
       9 => 10,
     ),
-    '#default_value' => variable_get('drupal_form_api_number_select', ''),
+    '#default_value' => variable_get('madlib_number_select', ''),
     //'#description' => t('Number'),
   );
   
-  $form['drupal_form_api_plural_noun_3_textfield'] = array(
+  $form['madlib_plural_noun_3_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Three'),
-    '#default_value' => variable_get('drupal_form_api_plural_noun_3_textfield', ''),
+    '#default_value' => variable_get('madlib_plural_noun_3_textfield', ''),
     //'#description' => t('Plural Noun Three'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_part_of_body_2_textfield'] = array(
+  $form['madlib_part_of_body_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of Body Two'),
-    '#default_value' => variable_get('drupal_form_api_part_of_body_2_textfield', ''),
+    '#default_value' => variable_get('madlib_part_of_body_2_textfield', ''),
     //'#description' => t('Part of Body Two'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_type_of_liquid_textfield'] = array(
+  $form['madlib_type_of_liquid_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Type of Liquid'),
-    '#default_value' => variable_get('drupal_form_api_type_of_liquid_textfield', ''),
+    '#default_value' => variable_get('madlib_type_of_liquid_textfield', ''),
     //'#description' => t('Type of Liquid'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_part_of_body_plural_textfield'] = array(
+  $form['madlib_part_of_body_plural_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Part of Body Plural'),
-    '#default_value' => variable_get('drupal_form_api_part_of_body_plural_textfield', ''),
+    '#default_value' => variable_get('madlib_part_of_body_plural_textfield', ''),
     //'#description' => t('Part of Body Plural'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_part_of_body_3_select'] = array(
+  $form['madlib_part_of_body_3_select'] = array(
     '#type' => 'select',
     '#title' => t('Part of Body Three'),
     '#options' => array(
@@ -156,74 +169,74 @@ function drupal_form_api_madlib_form($form, &$form_state) {
         0 => t('feet'),
       ),
     ),
-    '#default_value' => variable_get('drupal_form_api_part_of_body_3_select', ''),
+    '#default_value' => variable_get('madlib_part_of_body_3_select', ''),
     //'#description' => t('Part of Body Three'),
   );
   
-  $form['drupal_form_api_adjective_1_textfield'] = array(
+  $form['madlib_adjective_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective One'),
-    '#default_value' => variable_get('drupal_form_api_adjective_1_textfield', ''),
+    '#default_value' => variable_get('madlib_adjective_1_textfield', ''),
     //'#description' => t('Adjective One'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_plural_noun_4_textfield'] = array(
+  $form['madlib_plural_noun_4_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Four'),
-    '#default_value' => variable_get('drupal_form_api_plural_noun_4_textfield', ''),
+    '#default_value' => variable_get('madlib_plural_noun_4_textfield', ''),
     //'#description' => t('Plural Noun Four'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
     
-  $form['drupal_form_api_adjective_2_textfield'] = array(
+  $form['madlib_adjective_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Adjective Two'),
-    '#default_value' => variable_get('drupal_form_api_adjective_2_textfield', ''),
+    '#default_value' => variable_get('madlib_adjective_2_textfield', ''),
     //'#description' => t('Adjective Two'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_verb_ing_textfield'] = array(
+  $form['madlib_verb_ing_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Verb_ing'),
-    '#default_value' => variable_get('drupal_form_api_verb_ing_textfield', ''),
+    '#default_value' => variable_get('madlib_verb_ing_textfield', ''),
     //'#description' => t('Verb_ing'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_noun_1_textfield'] = array(
+  $form['madlib_noun_1_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun 1'),
-    '#default_value' => variable_get('drupal_form_api_noun_1_textfield', ''),
+    '#default_value' => variable_get('madlib_noun_1_textfield', ''),
     //'#description' => t('Noun 1'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
     
-  $form['drupal_form_api_plural_noun_5_textfield'] = array(
+  $form['madlib_plural_noun_5_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Plural Noun Five'),
-    '#default_value' => variable_get('drupal_form_api_plural_noun_5_textfield', ''),
+    '#default_value' => variable_get('madlib_plural_noun_5_textfield', ''),
     //'#description' => t('Plural Noun Five'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => FALSE,
   );
   
-  $form['drupal_form_api_noun_2_textfield'] = array(
+  $form['madlib_noun_2_textfield'] = array(
     '#type' => 'textfield',
     '#title' => t('Noun Two'),
-    '#default_value' => variable_get('drupal_form_api_noun_2_textfield', ''),
+    '#default_value' => variable_get('madlib_noun_2_textfield', ''),
     //'#description' => t('Noun Two'),
     '#size' => 60,
     '#maxlength' => 128,
