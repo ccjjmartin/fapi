@@ -21,8 +21,8 @@ function madlib_menu() {
   );
 
   $items['madlib'] = array(
-    'title' => 'Madlib',
-    'description' => 'Madlib Skeleton Form',
+    'title' => 'Have I got a Giraffe for You!',
+    'description' => 'A madlib using drupal form api',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('madlib_form'),
     'access arguments' => array('view published content'),
@@ -58,6 +58,19 @@ function madlib_admin() {
   );
 
   return system_settings_form($form);
+}
+
+/**
+ * Implements hook_form_alter.
+ */
+function madlib_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'madlib_form') {
+    if (variable_get('madlib_checkbox', 0) == 1) {
+      $form['madlib_note'] = array(
+        '#markup' => '<h1><b><p> DEBUG MODE: ON </p></b></h1>',
+      );
+    }
+  }
 }
 
 /**
@@ -177,10 +190,10 @@ function madlib_form($form, &$form_state) {
         1 => t('nose'),
       ),
       'torso' => array(
-        0 => t('stomach'),
+        2 => t('stomach'),
       ),
       'legs' => array(
-        0 => t('feet'),
+        3 => t('feet'),
       ),
     ),
     '#default_value' => variable_get('madlib_part_of_body_3_select', ''),
