@@ -54,13 +54,13 @@ function madlib_permission() {
 }
 
 /**
- * Implements hook_form_alter.
+ * Implements hook_form_alter().
  */
 function madlib_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'madlib_form') {
     if (variable_get('madlib_checkbox', 0) == 1) {
       $form['madlib_note'] = array(
-        '#markup' => '<h1><b><p> DEBUG MODE: ON </p></b></h1>',
+        '#markup' => '<h1><b><p class="madlib_hide_me"> DEBUG MODE: ON </p></b></h1>',
       );
     }
   }
@@ -71,11 +71,23 @@ function madlib_form_alter(&$form, &$form_state, $form_id) {
  */
 function madlib_form($form, &$form_state) {
 
+  $form['madlib_ajax_status_messages'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<div id="madlib_ajax_status_messages">',
+    '#suffix' => '</div>',
+  );
+  
   $form['madlib_section_1_fieldset'] = array(
     '#type' => 'fieldset',
     '#title' => t('Section 1'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
+    '#attributes' => array('class' => array('madlib_hide_me')),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="madlib_hidden"]' => array('value' => 'yes'),
+      ),
+    ),
   );
 
   $form['madlib_section_1_fieldset']['madlib_plural_noun_1_textfield'] = array(
@@ -85,6 +97,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_1_fieldset']['madlib_plural_noun_2_textfield'] = array(
@@ -94,6 +109,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_1_fieldset']['madlib_part_of_body_1_textfield'] = array(
@@ -103,6 +121,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_2_fieldset'] = array(
@@ -110,6 +131,12 @@ function madlib_form($form, &$form_state) {
     '#title' => t('Section 2'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
+    '#attributes' => array('class' => array('madlib_hide_me')),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="madlib_hidden"]' => array('value' => 'yes'),
+      ),
+    ),
   );
 
   $form['madlib_section_2_fieldset']['madlib_number_select'] = array(
@@ -129,6 +156,9 @@ function madlib_form($form, &$form_state) {
     ),
     '#default_value' => variable_get('madlib_number_select', ''),
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_2_fieldset']['madlib_plural_noun_3_textfield'] = array(
@@ -138,6 +168,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_2_fieldset']['madlib_part_of_body_2_textfield'] = array(
@@ -147,6 +180,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_2_fieldset']['madlib_type_of_liquid_textfield'] = array(
@@ -156,6 +192,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_2_fieldset']['madlib_part_of_body_plural_textfield'] = array(
@@ -165,6 +204,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset'] = array(
@@ -172,25 +214,34 @@ function madlib_form($form, &$form_state) {
     '#title' => t('Section 3'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
+    '#attributes' => array('class' => array('madlib_hide_me')),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="madlib_hidden"]' => array('value' => 'yes'),
+      ),
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_part_of_body_3_select'] = array(
     '#type' => 'select',
     '#title' => t('Part of the body'),
     '#options' => array(
-      'head' => array(
+      t('head') => array(
         0 => t('eyes'),
         1 => t('nose'),
       ),
-      'torso' => array(
+      t('torso') => array(
         2 => t('stomach'),
       ),
-      'legs' => array(
+      t('legs') => array(
         3 => t('feet'),
       ),
     ),
     '#default_value' => variable_get('madlib_part_of_body_3_select', ''),
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_adjective_1_textfield'] = array(
@@ -200,6 +251,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_plural_noun_4_textfield'] = array(
@@ -209,6 +263,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_adjective_2_textfield'] = array(
@@ -218,6 +275,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_adjective_3_textfield'] = array(
@@ -227,6 +287,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_verb_ing_textfield'] = array(
@@ -236,6 +299,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_noun_1_textfield'] = array(
@@ -245,6 +311,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_plural_noun_5_textfield'] = array(
@@ -254,6 +323,9 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_section_3_fieldset']['madlib_noun_2_textfield'] = array(
@@ -263,28 +335,198 @@ function madlib_form($form, &$form_state) {
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
+    '#ajax' => array(
+      'callback' => 'madlib_form_ajax_user_input_callback',
+    ),
   );
 
   $form['madlib_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
+    '#attributes' => array('class' => array('madlib_hide_me')),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="madlib_hidden"]' => array('value' => 'yes'),
+      ),
+    ),
   );
 
   $form['madlib_note'] = array(
-    '#markup' => '<p>Click it, you know you want to.</p>',
+    '#markup' => '<p class="madlib_hide_me">Click it, you know you want to.</p>',
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="madlib_hidden"]' => array('value' => 'yes'),
+      ),
+    ),
   );
-
+  
+  // For non-JS enabled clients we need to set this form element so that the form states
+  // know what state the form is in (show / hide)
+  if ($form_state['rebuild'] == FALSE || (variable_get('madlib_checkbox', 0) == 1)) {
+    $form['madlib_hidden'] = array(
+      '#type' => 'hidden',
+      '#value' => 'no',
+    );
+  }
+  else {
+    $form['madlib_hidden'] = array(
+      '#type' => 'hidden',
+      '#value' => 'yes',
+    );
+    // Apparently we can't hide markup type so we set it equal to nothing
+    $form['madlib_note'] = array();
+  }
+  
+  // If JS is enabled we only need the div
+  $form['madlib_output'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<div id="madlib_output_div">',
+    '#suffix' => '</div>',
+    '#markup' => '',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="madlib_hidden"]' => array('value' => 'yes'),
+      ),
+    ),
+  );
+  
+  // If JS is disabled
+  if ($form_state['rebuild'] == TRUE) {
+    $form['madlib_output']['#markup'] = madlib_form_output_text_with_t($form, $form_state);
+  }
+  
+  // If JS is disabled and debug is off
+  if ($form_state['rebuild'] == TRUE && variable_get('madlib_checkbox', 0) == 0) {
+    $form = array();
+    $form['madlib_output']['#markup'] = madlib_form_output_text_with_t($form, $form_state);
+  }
+  
   return $form;
+}
+
+/**
+ * AJAX callback for user inputs.
+ *
+ * @return array
+ *   Renderable array (the markup element)
+ */
+function madlib_form_ajax_user_input_callback($form, &$form_state) {
+  
+  // If the form has not been rebuilt allow the user to enter 
+  // data and change nothing.
+  if ($form_state['rebuild'] == TRUE) {
+    
+    // Clear previous messages (error) or they pile up and display all at once.
+    drupal_get_messages();
+    
+    // Validation function is NOT automatically called so we call it.
+    // TODO: this may be related to returning commands instead of part of a form.
+    madlib_form_validate($form, $form_state);
+    $errors = form_get_errors();
+    
+    $commands = array();
+    
+    // AJAX commands to run if the form did not pass validation
+    if (!empty($errors)) {
+      $commands[] = ajax_command_replace('#madlib_output_div',
+                                         '<div id="madlib_output_div"></div>');
+    }
+    
+    // AJAX command to run if the form passed validation
+    else {
+      
+      // Passed validation and debug mode is ON
+      if (variable_get('madlib_checkbox', 0) == 1 ) {
+        drupal_set_message(t('Answers received'));
+      }
+      
+      // Passed validation and debug mode is OFF
+      elseif (variable_get('madlib_checkbox', 0) == 0 ) {
+        drupal_set_message(t('Answers received'));
+        $commands[] = ajax_command_css('.madlib_hide_me', array('display' => none));
+      }
+      
+      // Common ajax commands for a validated form (no errors) and has been rebuilt at least once
+      $commands[] = ajax_command_replace('.messages', '<div id="messages"></div>');
+      $commands[] = ajax_command_replace('#madlib_ajax_status_messages',
+                                         '<div id="madlib_ajax_status_messages">' . theme('status_messages') . '</div>');
+      $commands[] = ajax_command_replace('#madlib_output_div',
+                                         madlib_form_output_text_with_t($form, $form_state));
+      $commands[] = ajax_command_invoke('input.error', 'removeClass', array('error'));
+    }
+  }
+  
+  return array('#type' => 'ajax', '#commands' => $commands);
 }
 
 /**
  * Madlib validate handler.
  */
 function madlib_form_validate($form, &$form_state) {
-  $verb_ing = $form_state['values']['madlib_verb_ing_textfield'];
-  if (strtolower(substr($verb_ing, strlen($verb_ing) - 3, 3)) != 'ing') {
-    form_set_error('madlib_verb_ing_textfield',
+  $required_keys = array(
+    'madlib_plural_noun_1_textfield',
+    'madlib_plural_noun_2_textfield',
+    'madlib_plural_noun_3_textfield',
+    'madlib_plural_noun_4_textfield',
+    'madlib_plural_noun_5_textfield',
+    'madlib_part_of_body_1_textfield',
+    'madlib_part_of_body_2_textfield',
+    'madlib_part_of_body_3_select',
+    'madlib_number_select',
+    'madlib_type_of_liquid_textfield',
+    'madlib_part_of_body_plural_textfield',
+    'madlib_adjective_1_textfield',
+    'madlib_adjective_2_textfield',
+    'madlib_adjective_3_textfield',
+    'madlib_verb_ing_textfield',
+    'madlib_noun_1_textfield',
+    'madlib_noun_2_textfield',
+  );
+  
+  $valid_keys = $required_keys;
+  array_push($valid_keys,
+    'madlib_ajax_status_messages',
+    'madlib_submit',
+    'madlib_note',
+    'madlib_output',
+    'madlib_hidden',
+    'form_build_id',
+    'form_token',
+    'form_id',
+    'op'
+  );
+  
+  if (!empty($form_state['values']['madlib_verb_ing_textfield'])) {
+    $verb_ing = $form_state['values']['madlib_verb_ing_textfield'];
+    
+    if (strtolower(substr($verb_ing, strlen($verb_ing) - 3, 3)) != 'ing') {
+      form_set_error('madlib_verb_ing_textfield',
       'Verb_ing: Please enter a word that ends in "ing"');
+    }
+  }
+  
+  foreach ($form_state['values'] as $form_item_key => $value) {
+    
+    $plain_form_item_key = check_plain($form_item_key);
+    $plain_value = check_plain($value);
+    
+    if (in_array($plain_form_item_key, $valid_keys)) {
+      
+      if ($plain_value <> $value) {
+        form_set_error($plain_form_item_key,
+          $plain_form_item_key . ': A form value should not contain anything other than plain text');
+      }
+      
+      if (in_array($plain_form_item_key, $required_keys)) {
+        if ($plain_value == '') {
+        form_set_error($plain_value,
+          $plain_form_item_key . ': is a required text field, please enter a value');
+        }
+      }
+    }
+    else {
+      form_set_error($plain_form_item_key, $plain_form_item_key . ': Form key not recognized');
+    }
   }
 }
 
@@ -295,3 +537,110 @@ function madlib_form_submit($form, &$form_state) {
   drupal_set_message(t('Answers received'));
   $form_state['rebuild'] = TRUE;
 }
+
+/**
+ * Madlib form output text in the t().
+ */
+function madlib_form_output_text_with_t($form, &$form_state) {
+  
+  // CYA for logic flaws elsewhere, if this gets called with errors return nothing.
+  madlib_form_validate($form, $form_state);
+  $errors = form_get_errors();
+  if (!empty($errors)) {
+    return;
+  }
+  
+  if (empty($form_state['values']['madlib_plural_noun_1_textfield'])) {
+    return;
+  }
+  
+  // Find selected body part value
+  $body_part_text_value = '';
+  
+  $body_part_options =
+    $form_state['complete form']['madlib_section_3_fieldset']['madlib_part_of_body_3_select']['#options'];
+
+  foreach ($body_part_options as $array) {
+    foreach ($array as $body_part => $text_value) {
+      if ($body_part == $form_state['values']['madlib_part_of_body_3_select']) {
+        $body_part_text_value = $text_value;
+      }
+    }
+  }
+  
+  // Correct a/an to a or an
+  // Technically this isn't 100% correct but it is better than before
+  $vowels = array('a','e','i','o','u');
+  
+  $madlib_adjective_2_textfield_a_an = '';
+  if (in_array(substr(check_plain($form_state['values']['madlib_adjective_2_textfield']), 0, 1), $vowels)) {
+    $madlib_adjective_2_textfield_a_an = 'a';
+  }
+  else {
+    $madlib_adjective_2_textfield_a_an = 'an';
+  }
+  
+  $madlib_adjective_3_textfield_a_an = '';
+  if (in_array(substr(check_plain($form_state['values']['madlib_adjective_3_textfield']), 0, 1), $vowels)) {
+    $madlib_adjective_3_textfield_a_an = 'a';
+  }
+  else {
+    $madlib_adjective_3_textfield_a_an = 'an';
+  }
+  
+  // For cleaner code below set the number select to a variable here.
+  $madlib_number_select = 
+    $form_state['complete form']['madlib_section_2_fieldset']['madlib_number_select']['#options'][
+    $form_state['values']['madlib_number_select']];
+  
+  // Generate the text using the t(). 
+  $output =
+  '<div id="madlib_output_div"><h1>' .
+    t(
+      'Giraffes have aroused the curiousity of <b>@madlib_plural_noun_1_textfield</b>' .
+      ' since earliest times.  The giraffe is the tallest of all living <b>@madlib_plural_noun_2_textfield</b>' .
+      ', but scientists are unable to explain how it got its long <b>@madlib_part_of_body_1_textfield</b>' .
+      '.  The giraffe\'s tremendous height, which might reach <b>@madlib_number_select</b>' .
+      ' <b>@madlib_plural_noun_3_textfield</b>' .
+      ', comes mostly from its legs and <b>@madlib_part_of_body_2_textfield</b>' .
+      '.  If a giraffe wants to take a drink of <b>@madlib_type_of_liquid_textfield</b>' .
+      ' from the ground, it has <b>@madlib_part_of_body_plural_textfield</b>' .
+      ' far apart in order to reach down and lap up the water with its huge <b>@body_part_text_value</b>' .
+      '.  The giraffe has <b>@madlib_adjective_1_textfield</b>' .
+      ' ears that are sensitive to the faintest <b>@madlib_plural_noun_4_textfield</b>' .
+      ', and it has @madlib_adjective_2_textfield_a_an <b>@madlib_adjective_2_textfield</b>' . // Lets make it right
+      ' sense of smell and sight.  When attacked, ' .
+      'a giraffe can put up @madlib_adjective_2_textfield_a_an <b>@madlib_adjective_3_textfield</b>' . // Lets make it right
+      ' fight by <b>@madlib_verb_ing_textfield</b>' .
+      ' out with its hind legs and using its head like a sledge <b>@madlib_noun_1_textfield</b>' .
+      '.  Finally, a giraffe can gallop at more than thirty <b>@madlib_plural_noun_5_textfield</b>' .
+      ' an hour when pursued and can outrun the fastest <b>@madlib_noun_2_textfield</b>' .
+      '.',
+      array(
+        '@madlib_plural_noun_1_textfield' => $form_state['values']['madlib_plural_noun_1_textfield'],
+        '@madlib_plural_noun_2_textfield' => $form_state['values']['madlib_plural_noun_2_textfield'],
+        '@madlib_part_of_body_1_textfield' => $form_state['values']['madlib_part_of_body_1_textfield'],
+        '@madlib_number_select' => $madlib_number_select,
+        '@madlib_plural_noun_3_textfield' => $form_state['values']['madlib_plural_noun_3_textfield'],
+        '@madlib_part_of_body_2_textfield' => $form_state['values']['madlib_part_of_body_2_textfield'],
+        '@madlib_type_of_liquid_textfield' =>$form_state['values']['madlib_type_of_liquid_textfield'],
+        '@madlib_part_of_body_plural_textfield' => $form_state['values']['madlib_part_of_body_plural_textfield'],
+        '@body_part_text_value' => $body_part_text_value,
+        '@madlib_adjective_1_textfield' => $form_state['values']['madlib_adjective_1_textfield'],
+        '@madlib_plural_noun_4_textfield' => $form_state['values']['madlib_plural_noun_4_textfield'],
+        '@madlib_adjective_2_textfield_a_an' => $madlib_adjective_2_textfield_a_an,
+        '@madlib_adjective_2_textfield' => $form_state['values']['madlib_adjective_2_textfield'],
+        '@madlib_adjective_3_textfield_a_an' => $madlib_adjective_3_textfield_a_an,
+        '@madlib_adjective_3_textfield' => $form_state['values']['madlib_adjective_3_textfield'],
+        '@madlib_verb_ing_textfield' => $form_state['values']['madlib_verb_ing_textfield'],
+        '@madlib_noun_1_textfield' => $form_state['values']['madlib_noun_1_textfield'],
+        '@madlib_plural_noun_5_textfield' => $form_state['values']['madlib_plural_noun_5_textfield'],
+        '@madlib_noun_2_textfield' => $form_state['values']['madlib_noun_2_textfield'],
+      )
+    ) .
+  '</h1></div>';
+  
+  return $output;
+}
+
+
