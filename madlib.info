@@ -3,4 +3,4 @@ description = Madlib form
 core = 7.x
 package = Custom
 
-configure = admin/madlib
+configure = admin/config/madlib/settings
